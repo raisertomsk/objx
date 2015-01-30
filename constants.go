@@ -1,6 +1,6 @@
 package objx
 
-const (
+var (
 	// PathSeparator is the character used to separate the elements
 	// of the keypath.
 	//
@@ -11,3 +11,13 @@ const (
 	// separate the Base64 string from the security signature.
 	SignatureSeparator = "_"
 )
+
+// Changes path separator
+func SetPathSeparator(separator string) {
+	PathSeparator = separator
+}
+
+// Changes signature separator
+func SetSignatureSeparator(separator string) {
+	SignatureSeparator = separator
+}
