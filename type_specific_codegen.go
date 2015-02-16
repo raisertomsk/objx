@@ -305,6 +305,7 @@ func (v *Value) ObjxMap(optionalDefault ...(Map)) Map {
 	return New(nil)
 }
 
+// same that ObjxMap but this works
 func (v *Value) ConvertToObjxMap() Map {
 	return New(v.Data())
 }
@@ -326,6 +327,19 @@ func (v *Value) ObjxMapSlice(optionalDefault ...[](Map)) [](Map) {
 		return optionalDefault[0]
 	}
 	return nil
+}
+
+// same that ObjxMapSlice but this works
+func (v *Value) ConvertToObjxMapSlice() []Map {
+	if s, ok := v.data.([]interface{}); ok {
+		mp := []Map{}
+		for _, val := range s {
+			mp = append(mp, New(val))
+		}
+		return mp
+	} else {
+		return []Map{New(v.Data())}
+	}
 }
 
 // MustObjxMapSlice gets the value as a [](Map).
