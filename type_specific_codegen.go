@@ -305,6 +305,10 @@ func (v *Value) ObjxMap(optionalDefault ...(Map)) Map {
 	return New(nil)
 }
 
+func (v *Value) ConvertToObjxMap() Map {
+	return New(v.Data())
+}
+
 // MustObjxMap gets the value as a (Map).
 //
 // Panics if the object is not a (Map).
