@@ -620,14 +620,16 @@ func (v *Value) MustStr() string {
 
 // StrSlice gets the value as a []string, returns the optionalDefault
 // value or nil if the value is not a []string.
-func (v *Value) StrSlice(optionalDefault ...[]string) []string {
-	if s, ok := v.data.([]string); ok {
-		return s
+func (v *Value) StrSlice() []string {
+	strs := []string{}
+	if s, ok := v.data.([]interface{}); ok {
+		for _, s := range s {
+			if s, ok := s.(string); ok {
+				strs = append(strs, s)
+			}
+		}
 	}
-	if len(optionalDefault) == 1 {
-		return optionalDefault[0]
-	}
-	return nil
+	return strs
 }
 
 // MustStrSlice gets the value as a []string.
